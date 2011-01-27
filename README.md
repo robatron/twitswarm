@@ -17,10 +17,12 @@ Ideally, we want the swarm to auto-discover new siblings. The new agent should s
 ## Authenticaton
 ### Inter-agent
 When a new sibling is discovered, how can the swarm verify it's one of theirs? Twitter's [direct message system](http://support.twitter.com/entries/14606-what-is-a-direct-message-dm) should be able to be used for this purpose. A handshake could go something like this:
+
  1. The canidate agent tweets the auto-discover announcement that contains a tag associated with the swarm, e.g., "#myswarm"
  1. Each member of the swarm sees the announcement.
  1. Each member asks the canidate agent for a password via direct message.
  1. If the canidate agent replies with the correct password, each swarm member accepts the new member into the group.
+
 ### Master-to-swarm
 Each agent should know its masters and only respond to commands given by them. There should be a way to add/remove masters from the swarm by tweetings something like, "#myswarm add master @someone" or "#myswarm remove master @someone".
 
