@@ -12,6 +12,11 @@ The swarm should be able to be commanded by one or more humans. Each agent shoul
 
 ## Plugin system
 There should be a robust and powerful plugin system for adding and modifying commands.
+### Plugin brainstorm
+ * **robotRollCall:** Each agent pings all of its siblings. If a sibling doesn't repond, report it to his master via an @Mention.
+ * **showMeYourPapers or IDPlease:** Each agent responds via direct message details about itself, e.g., IP address, version, etc.
+ * **hangman:** The agents play hangman with each other.
+ * **hostHealth:** Each agent returns a status report of the host machine via direct message, e.g. a snapshot of top.
 
 ## Sibling agent auto-discover
 Ideally, we want the swarm to auto-discover new siblings. The new agent should simply be able to tweet something like "#myswarm [Hey you guys!](http://www.youtube.com/watch?v=mkB5-BHxKZI)" to be discovered by, and aclimated into the swarm.
@@ -30,4 +35,5 @@ Each agent should know its masters and only respond to commands given by them. T
 
 ## Codebase auto-update
 Each agent should be able to auto-update itself by occationally pulling from a git repository.
+
 
