@@ -1,7 +1,9 @@
 # twitswarm
-Stands for "Twitter Swarm", a non-malicious, distributed twitter bot mesh network.
+Stands for "Twitter Swarm", a non-malicious, distributed twitter bot swarm.
 
-The idea is that you can be running *n* agents that would have the ability to interact with each other in various, productive ways. For example, the main prospective use of these agents would be to make sure each of their siblings were alive and well. We'll call this "Robot Roll Call" ([very related](http://www.youtube.com/watch?v=wKvSfG_XYyU)). In Robot Roll Call, each agent would ping each of their siblings. If one or more of their siblings didn't answer, they would [@Mention](http://support.twitter.com/entries/14023-what-are-replies-and-mentions) their master with a report.
+The idea is that you can be running *n* agents that would have the ability to interact with each other in various ways. For example, the main prospective use of these agents would be to make sure each of their siblings were alive and well. (Each agent could be on a different machine, and thus, a dead agent would possibly mean a dead machine.) 
+
+We'll call this "Robot Roll Call" ([very related](http://www.youtube.com/watch?v=wKvSfG_XYyU)). In Robot Roll Call, each agent would ping each of their siblings. If one or more of their siblings didn't answer, they would [@Mention](http://support.twitter.com/entries/14023-what-are-replies-and-mentions) their master with a report.
 
 Each agent should be running an identical codebase.
 
