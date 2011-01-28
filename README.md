@@ -6,6 +6,7 @@ The idea is that you can be running *n* agents that would have the ability to in
 We'll call this "Robot Roll Call" ([very related](http://www.youtube.com/watch?v=wKvSfG_XYyU)). In Robot Roll Call, each agent would ping each of their siblings. If one or more of their siblings didn't answer, they would [@Mention](http://support.twitter.com/entries/14023-what-are-replies-and-mentions) their master with a report.
 
 To make this project clean and interesting, I propose the following constraints:
+
 1. Each agent should be running an identical codebase.
 1. *All* communication should be done through twitter
 
