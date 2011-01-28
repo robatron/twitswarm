@@ -5,7 +5,9 @@ The idea is that you can be running *n* agents that would have the ability to in
 
 We'll call this "Robot Roll Call" ([very related](http://www.youtube.com/watch?v=wKvSfG_XYyU)). In Robot Roll Call, each agent would ping each of their siblings. If one or more of their siblings didn't answer, they would [@Mention](http://support.twitter.com/entries/14023-what-are-replies-and-mentions) their master with a report.
 
-Each agent should be running an identical codebase.
+To make this project clean and interesting, I propose the following constraints:
+1. Each agent should be running an identical codebase.
+1. *All* communication should be done through twitter
 
 ## Master control of the swarm
 The swarm should be able to be commanded by one or more humans. Each agent should listen for commands via public twitter feed, and direct messages. E.g., you may want to have the agents restart a service on their host machine, or force-update themselves.
@@ -17,6 +19,7 @@ There should be a robust and powerful plugin system for adding and modifying com
  * **showMeYourPapers or IDPlease:** Each agent responds via direct message details about itself, e.g., IP address, version, etc.
  * **hangman:** The agents play hangman with each other.
  * **hostHealth:** Each agent returns a status report of the host machine via direct message, e.g. a snapshot of top.
+ * **chatter:** Have the bots talk to each other using [Cleaverbot](http://www.cleverbot.com/).
 
 ## Sibling agent auto-discover
 Ideally, we want the swarm to auto-discover new siblings. The new agent should simply be able to tweet something like "#myswarm [Hey you guys!](http://www.youtube.com/watch?v=mkB5-BHxKZI)" to be discovered by, and aclimated into the swarm.
