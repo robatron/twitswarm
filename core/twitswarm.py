@@ -10,6 +10,8 @@ def main():
     print '-------------------'
     print ' T W I T S W A R M '
     print '-------------------'
+    print "This totally isn't implemented at all yet."
+    print "Please check back later :)"
     exit(0)
 
 # run main once everything's loaded

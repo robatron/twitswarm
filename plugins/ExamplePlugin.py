@@ -5,10 +5,10 @@ Just messing around. No real functionality yet!
 
 Things I found this plugin needs from twitswarm:
     
-    registerAutosay:
-        Register an auto announcement every _ seconds
+    autoSend:
+        Auto-send a message every every _ seconds
     
-    registerListener:
+    listenFor:
         Start listening for specified message from specified stream. Call
         handler when it finds a match.
 
