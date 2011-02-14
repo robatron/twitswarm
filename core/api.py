@@ -1,5 +1,5 @@
 '''
-Plugin interface to twitswarm for the plugins.
+Application plugin interface to twitswarm for the plugins.
 '''
 
 # --------
