@@ -9,13 +9,6 @@ from twitswarm import feeds, tweet
 from twitswarm.plugins import plugin, api
 
 class ExamplePlugin(plugin):
-    '''
-    Example plugin
-
-    An example of a simple plugin that listens for "Hello world!" and respond with 
-    "'Sup."
-    '''
-
     def __init__(self):
         ''' initialize '''
 
