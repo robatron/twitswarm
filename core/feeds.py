@@ -2,9 +2,9 @@
 Feed specifications (enumerated)
 '''
 
-PUBLIC = 0
+ALL = 0
 
-FAMILY = 1
+FRIENDS = 1
 
 USER = 2
 
