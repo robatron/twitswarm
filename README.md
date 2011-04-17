@@ -1,5 +1,5 @@
 # twitswarm
-Stands for "Twitter Swarm", a non-malicious, distributed twitter bot swarm.
+Short for "Twitter Swarm", simple distributed twitter bot platform.
 
 The idea is that you can be running *n* agents that would have the ability to interact with each other in various ways. For example, the main prospective use of these agents would be to make sure each of their siblings were alive and well. We'll call this "Robot Roll Call" ([very related](http://www.youtube.com/watch?v=wKvSfG_XYyU)). 
 
