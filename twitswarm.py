@@ -3,7 +3,7 @@
 A distributed twitter bot platform.
 '''
 
-from ExamplePlugin import ExamplePlugin
+from plugin__hello_world import hello_world
 
 def main():
     ''' Runs at program start '''
@@ -17,7 +17,7 @@ def main():
 
 def dealWithPluginsOrWhatever():
     plugins = []
-    plugins.append(ExamplePlugin())
+    plugins.append(hello_world())
 
 # run main once everything's loaded
 if __name__ == '__main__':
