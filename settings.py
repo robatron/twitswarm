@@ -9,3 +9,6 @@ SWARM_ID = "MySwarm"
 # authentication.
 SWARM_SECRET_KEY = "Super secret! (Said with a lisp)"
 
+# This agent's twitter username
+TWITTER_USERNAME = 'twitswarmagent0'
+
