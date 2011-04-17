@@ -9,10 +9,9 @@ class feeds:
     USER = 2
     DIRECT = 3
 
-# -----
-# send
-# -----
 class send:
+    ''' Functions relating to sending tweets/messages. '''
+
     def now(self, message, to_users=None, to_swarm=False):
         '''
         Update this agent's status with ``message``. 
@@ -38,10 +37,9 @@ class send:
         ``to_user``. '''
         pass
 
-# -------
-# listen
-# -------
 class listen:
+    ''' Functions relating to recieving/listening for tweets/messages. '''
+
     def register(self,  msg_pattern, on_feed, handler):
         ''' 
         Register a regex pattern ``msg_pattern`` to listen for on the feed 
@@ -51,6 +49,7 @@ class listen:
         The matched tweet will be passed to the handler function.
         '''
         handler("hello")
+        
 
     def waitFor(self, msg_pattern, on_feed):
         '''
