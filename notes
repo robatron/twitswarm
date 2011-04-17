@@ -1,0 +1,12 @@
+Notes from Corbin, April 2011
+--
+buildbot - checkout auto-uptdate portion as to not die
+zope iterface (?)
+    python interface
+
+plugin loaders
+    twisted plugin manager
+    exocet
+
+avoid threads, auquire coroutines (or callbacks)
+

@@ -8,7 +8,7 @@ API functions.
 from twitIO import feeds, listen
 
 class ExamplePlugin():
-    def __init__(self):
+    def __init__(self, a):
         ''' initialize '''
 
         self.listen = listen()
@@ -22,3 +22,4 @@ class ExamplePlugin():
     def helloWorldResponder(self, tweet):
         ''' Responder for "Hello world!" tweets '''
         print tweet
+

@@ -19,7 +19,7 @@ def main():
 
 def dealWithPluginsOrWhatever():
     plugins = []
-    plugins.append(ExamplePlugin())
+    plugins.append(ExamplePlugin(a))
 
 # run main once everything's loaded
 if __name__ == '__main__':
