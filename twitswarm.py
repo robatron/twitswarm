@@ -1,14 +1,12 @@
 #! /usr/bin/env python
 '''
-T W I T S W A R M
-
-This is the main codefile for twitswarm.
+A distributed twitter bot platform.
 '''
 
 from ExamplePlugin import ExamplePlugin
 
 def main():
-    ''' Run at program start '''
+    ''' Runs at program start '''
     print '-------------------'
     print ' T W I T S W A R M '
     print '-------------------'
@@ -19,7 +17,7 @@ def main():
 
 def dealWithPluginsOrWhatever():
     plugins = []
-    plugins.append(ExamplePlugin(a))
+    plugins.append(ExamplePlugin())
 
 # run main once everything's loaded
 if __name__ == '__main__':

@@ -5,18 +5,18 @@ Just messing around. No real functionality yet! Attempting to use all of the
 API functions.
 '''
 
-from twitIO import feeds, listen
+from twitAPI import feeds, listen
 
 class ExamplePlugin():
-    def __init__(self, a):
-        ''' initialize '''
+    def __init__(self):
+        '''Initialize this example plugin.'''
 
         self.listen = listen()
 
         self.listen.listen(
-            r"Hello world!",    # regex of what to listen for
-            feeds.ALL,          # what feed to listen on
-            self.helloWorldResponder # function to call when it matches 
+            r'Hello world!',            # regex of what to listen for
+            feeds.ALL,                  # what feed to listen on
+            self.helloWorldResponder    # function to call when it matches 
         )
 
     def helloWorldResponder(self, tweet):
