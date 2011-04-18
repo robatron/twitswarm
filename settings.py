@@ -12,3 +12,7 @@ SWARM_SECRET_KEY = "Super secret! (Said with a lisp)"
 # This agent's twitter username
 TWITTER_USERNAME = 'twitswarmagent0'
 
+# How often to poll twitter (in seconds). Don't make this too low, or twitter
+# will start refusing requests!
+TWITTER_POLL_INTERVAL = 15
+

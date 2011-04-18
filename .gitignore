@@ -1,2 +1,6 @@
 *.swp
 *.pyc
+
+# ignore sensitive twitswarm application information (e.g., secret keys). Not
+# sure how to deal with this yet.
+app_info.py

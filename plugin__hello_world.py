@@ -11,13 +11,12 @@ class hello_world(base_plugin):
         '''Initialize this example plugin.'''
 
         # register a listener for 'hello world'
-        self.listen.register(
-            r'Hello world!',            # regex of what to listen for
-            feeds.ALL,                  # what feed to listen on
-            self.hello_world_responder  # function to call when it matches 
+        self.register_listener(
+            r'Hello world!',            
+            self.hello_world_responder 
         )
 
-    def hello_world_responder(self, tweet):
+    def hello_world_responder(self):
         ''' Responder for "Hello world!" tweets '''
-        print tweet
+        print 'Hello!'
 

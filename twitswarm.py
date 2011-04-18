@@ -3,11 +3,17 @@
 A distributed twitter bot platform.
 '''
 
-from settings import *
 import time
+from twitter import oauth_dance, OAuth
+
+from settings import *
+import app_info
 
 # temporary plugin imports (will eventually be handled by the plugin manager)
 from plugin__hello_world import hello_world
+
+plugins = []
+oauth = None
 
 def main():
     ''' Runs at program start '''
@@ -15,23 +21,53 @@ def main():
     print ' T W I T S W A R M '
     print '-------------------'
     print 'Hello from Agent %s!'%TWITTER_USERNAME
-    print "Please check back later :)"
-    dealWithPluginsOrWhatever()
+    load_plugins()
+    authenticate()
     start()
     exit(0)
 
-def dealWithPluginsOrWhatever():
-    plugins = []
+def authenticate():
+    print "Authenticating with twitswarm. Follow directions in browser."
+    print "--"
+    try:
+        token_key, token_secret = oauth_dance.oauth_dance(app_info.APP_NAME, 
+                app_info.CONSUMER_KEY, app_info.CONSUMER_SECRET)
+        oauth = OAuth(token_key, token_secret, app_info.CONSUMER_KEY, 
+                app_info.CONSUMER_SECRET)
+    except KeyboardInterrupt:
+        byebye()
+    print "--"
+    print "Authenticated!"
+
+def load_plugins():
     plugins.append(hello_world())
 
 def start():
     ''' Main program loop. '''
+    print 'Starting main program loop. Press Ctrl+c to exit.'
+
     while True:
         try:
-            time.sleep(10000)
+            for plugin in plugins:
+
+                # listen for each plugin's registered listeners
+                for listener_spec in plugin.listeners:
+                    listen_for(listener_spec['search_query'], 
+                            listener_spec['handler'])
+
+                # sleep for a bit to respect the twitter API's rate limiting
+                time.sleep(TWITTER_POLL_INTERVAL)
+        # quit on Ctrl+c
         except KeyboardInterrupt:
-            print "\nAgent %s shutting down. Bye!"%TWITTER_USERNAME
-            break 
+            byebye()
+
+def listen_for(query, handler):
+    print 'Performing search on ``%s``, calling ``%s`` on matched results'\
+            %(query,handler.__name__)
+
+def byebye():
+    print "\nAgent %s shutting down. Bye!"%TWITTER_USERNAME
+    exit(0)
 
 if __name__ == '__main__':
     main()

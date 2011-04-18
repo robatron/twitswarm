@@ -48,8 +48,9 @@ class listen:
         
         The matched tweet will be passed to the handler function.
         '''
-        handler("hello")
-        
+        print 'Listening for pattern %r on feed %s'%(msg_pattern, on_feed)
+        pass
+
 
     def waitFor(self, msg_pattern, on_feed):
         '''
