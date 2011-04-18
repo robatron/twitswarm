@@ -4,7 +4,8 @@ A distributed twitter bot platform.
 '''
 
 import time
-from twitter import oauth_dance, OAuth
+from twitter import oauth_dance, OAuth, Twitter
+from twitter import TwitterHTTPError
 
 from settings import *
 import app_info
@@ -13,7 +14,7 @@ import app_info
 from plugin__hello_world import hello_world
 
 plugins = []
-oauth = None
+leTwitter = None
 
 def main():
     ''' Runs at program start '''
@@ -34,6 +35,10 @@ def authenticate():
                 app_info.CONSUMER_KEY, app_info.CONSUMER_SECRET)
         oauth = OAuth(token_key, token_secret, app_info.CONSUMER_KEY, 
                 app_info.CONSUMER_SECRET)
+        leTwitter = Twitter(auth=oauth)
+    except TwitterHTTPError:
+        print "Authentication error!"
+        byebye(1)
     except KeyboardInterrupt:
         byebye()
     print "--"
@@ -64,10 +69,12 @@ def start():
 def listen_for(query, handler):
     print 'Performing search on ``%s``, calling ``%s`` on matched results'\
             %(query,handler.__name__)
+    print leTwitter.search(q=query)
 
-def byebye():
+
+def byebye(status=0):
     print "\nAgent %s shutting down. Bye!"%TWITTER_USERNAME
-    exit(0)
+    exit(status)
 
 if __name__ == '__main__':
     main()

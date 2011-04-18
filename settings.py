@@ -14,5 +14,5 @@ TWITTER_USERNAME = 'twitswarmagent0'
 
 # How often to poll twitter (in seconds). Don't make this too low, or twitter
 # will start refusing requests!
-TWITTER_POLL_INTERVAL = 15
+TWITTER_POLL_INTERVAL = 5
 
