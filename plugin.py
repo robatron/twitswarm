@@ -49,6 +49,8 @@ class base_plugin:
                     print '"%s" from @%s'%(result['text'], result['from_user'])
                     results.append(result)
                 print "<<< end page %s"%cur_page
+                listener.since_id = int(response['max_id_str'])
+                print "Since ID changed to %s"%listener.since_id
                 nr_results = len(response['results'])
                 cur_page += 1
             print "That's all for now!"
@@ -56,5 +58,5 @@ class base_plugin:
             # Finally, call the handler function for the current listener for
             # each result
             for result in results:
-                listener.handler(result)
+                listener.handler(result, twitter)
 

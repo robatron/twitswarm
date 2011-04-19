@@ -14,12 +14,12 @@ class hello_world(base_plugin):
         # register a listener for 'hello world'
         self.register_listener(
             #'Hello world!',            
-            'god',
+            'lol',
             self.hello_world_responder 
         )
 
-    def hello_world_responder(self, tweet):
+    def hello_world_responder(self, tweet, twitter):
         ''' Responder for "Hello world!" tweets '''
-        print "This is the hello_world_responder! Here's the tweet I got: %s"\
-                %tweet['text']
+        #twitter.statuses.update(status="Hi there, @%s!"%tweet['from_user'],
+        #        in_reply_to_status_id=tweet['id'])
 
