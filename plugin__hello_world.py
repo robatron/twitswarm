@@ -7,6 +7,7 @@ from plugin import base_plugin
 from io import feeds
 
 class hello_world(base_plugin):
+
     def __init__(self):
         '''Initialize this example plugin.'''
 
