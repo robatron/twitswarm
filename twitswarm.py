@@ -4,7 +4,7 @@ A distributed twitter bot platform.
 '''
 
 import time
-import json
+import pickle
 from twitter import oauth_dance, OAuth, Twitter
 from twitter import TwitterHTTPError
 
@@ -16,14 +16,16 @@ from plugin__hello_world import hello_world
 
 def main():
     ''' Runs at program start '''
-    ts = twitswarm()
-    ts.start()
+    try:
+        ts = twitswarm()
+        ts.start()
+    except KeyboardInterrupt:
+        ts.finish()
     exit(0)
 
 class twitswarm:
     plugins = []
     twitter = None
-    test_val = None   
 
     def __init__(self):
         print '--[twitswarm]----------'
@@ -32,23 +34,26 @@ class twitswarm:
         self.authenticate()
 
     def authenticate(self):
-        print "Starting authentication dance:"
-        print "--"
-
+        print "Authenticating..."
+        oauth = None
         try:
-            token_key, token_secret = oauth_dance.oauth_dance(
-                    app_info.APP_NAME, app_info.CONSUMER_KEY, 
-                    app_info.CONSUMER_SECRET)
-            oauth = OAuth(token_key, token_secret, app_info.CONSUMER_KEY, 
-                    app_info.CONSUMER_SECRET)
-            self.twitter = Twitter(auth=oauth)
-        except TwitterHTTPError:
-            print "Authentication error!"
-            self.finish(1)
-        except KeyboardInterrupt:
-            self.finish()
+            oauth_file = open("oauth.dat", 'r')
+            oauth = pickle.load(oauth_file)
+        except IOError:
+            print "Oauth file not found. Starting twitter oauth dance."
+            try:
+                token_key, token_secret = oauth_dance.oauth_dance(
+                        app_info.APP_NAME, app_info.CONSUMER_KEY, 
+                        app_info.CONSUMER_SECRET)
+                oauth = OAuth(token_key, token_secret, app_info.CONSUMER_KEY, 
+                        app_info.CONSUMER_SECRET)
+                oauth_file = open("oauth.dat",'w')
+                pickle.dump(oauth, oauth_file)
+            except TwitterHTTPError:
+                print "Authentication error!"
+                self.finish(1)
 
-        print "--"
+        self.twitter = Twitter(auth=oauth)
         print "Authenticated!"
 
     def load_plugins(self):
@@ -59,31 +64,16 @@ class twitswarm:
         print 'Starting main program loop. Press Ctrl+c to exit.'
 
         while True:
-            try:
-                for plugin in self.plugins:
+            for plugin in self.plugins:
+                plugin.listen(self.twitter)
 
-                    # listen for each plugin's registered listeners
-                    for listener_spec in plugin.listeners:
-                        self.look_for(listener_spec['search_query'], 
-                                listener_spec['handler'])
-
-                    # sleep for a bit as to not anger le twitters
-                    time.sleep(TWITTER_POLL_INTERVAL)
-
-            # quit on Ctrl+c
-            except KeyboardInterrupt:
-                self.finish()
-
-    def look_for(self, query, handler):
-        print 'Performing search on ``%s``, calling ``%s`` on matched results'\
-                %(query,handler.__name__)
-        print json.dumps(self.twitter.search(q=query), indent=4)
-
+                # sleep for a bit as to not anger le twitters
+                time.sleep(TWITTER_POLL_INTERVAL)
 
     def finish(self, status=0):
         print "\nAgent %s shutting down. Bye!"%TWITTER_USERNAME
         exit(status)
 
+# Start twitswarm after the file's loaded
 if __name__ == '__main__':
     main()
-
