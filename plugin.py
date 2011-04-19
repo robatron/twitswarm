@@ -26,6 +26,8 @@ class base_plugin:
         print 'Running through the listeners for %s'%self.__class__.__name__
         for listener in self.listeners:
 
+            results = []
+
             # We want results from this time and later, so let's run an 
             # initial search to obtain the latest tweet id for the listeners
             if listener.since_id == 0:
@@ -45,8 +47,14 @@ class base_plugin:
                 print "Begin page %s >>>"%cur_page
                 for result in response['results']:
                     print '"%s" from @%s'%(result['text'], result['from_user'])
+                    results.append(result)
                 print "<<< end page %s"%cur_page
                 nr_results = len(response['results'])
                 cur_page += 1
             print "That's all for now!"
+
+            # Finally, call the handler function for the current listener for
+            # each result
+            for result in results:
+                listener.handler(result)
 

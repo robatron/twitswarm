@@ -13,11 +13,13 @@ class hello_world(base_plugin):
 
         # register a listener for 'hello world'
         self.register_listener(
-            r'Hello world!',            
+            #'Hello world!',            
+            'god',
             self.hello_world_responder 
         )
 
-    def hello_world_responder(self):
+    def hello_world_responder(self, tweet):
         ''' Responder for "Hello world!" tweets '''
-        print 'Hello!'
+        print "This is the hello_world_responder! Here's the tweet I got: %s"\
+                %tweet['text']
 
